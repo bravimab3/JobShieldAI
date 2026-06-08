@@ -5,3 +5,4 @@ scipy
 joblib
 tensorflow==2.19.0
 gunicorn
+scikit-learn
