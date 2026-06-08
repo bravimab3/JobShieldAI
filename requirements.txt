@@ -1,7 +1,7 @@
 flask
-tensorflow
-joblib
 pandas
 numpy
 scipy
-scikit-learn
+joblib
+tensorflow==2.19.0
+gunicorn
