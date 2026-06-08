@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JobShieldAI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">JobShieldAI</div>
+
+    <div class="nav-links">
+        <a href="#">Dashboard</a>
+        <a href="#">Analysis</a>
+    </div>
+
+    <button class="api-btn">
+        Connect API
+    </button>
+</nav>
+
+<section class="hero">
+
+    <div class="left">
+
+        <span class="badge">
+            ADVANCED THREAT DETECTION
+        </span>
+
+        <h1>
+            Detect Fake Job <br>
+            Listings with AI
+        </h1>
+
+        <p>
+            Protecting job seekers from sophisticated employment scams.
+            JobShieldAI leverages Deep Learning and NLP to analyze
+            listings in real time.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="primary-btn">
+                Start Analysis
+            </button>
+
+            <button class="secondary-btn">
+                View Threat Map
+            </button>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="scanner">
+
+            <h3>SCANNING ENGINE V2.4</h3>
+
+            <p>Analyzing pattern weights... [DONE]</p>
+            <p>Scrubbing metadata... [DONE]</p>
+
+            <h2 id="risk-score">
+                Probability score calculated: --
+            </h2>
+
+            <div id="alert-box">
+                READY FOR ANALYSIS
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="form-section">
+
+<div class="analysis-card">
+
+<h2>Job Analysis Engine</h2>
+
+<input id="title" placeholder="Job Title">
+
+<input id="location" placeholder="Location">
+
+<textarea id="company_profile"
+placeholder="Company Profile"></textarea>
+
+<textarea id="description"
+placeholder="Job Description"></textarea>
+
+<textarea id="requirements"
+placeholder="Requirements"></textarea>
+
+<select id="industry">
+<option>Information Technology</option>
+<option>Marketing</option>
+<option>Finance</option>
+<option>Healthcare</option>
+</select>
+
+<select id="employment_type">
+<option>Full-time</option>
+<option>Part-time</option>
+<option>Contract</option>
+<option>Internship</option>
+</select>
+
+<div class="checkboxes">
+
+<label>
+<input type="checkbox" id="telecommuting">
+Telecommuting
+</label>
+
+<label>
+<input type="checkbox" id="logo">
+Has Company Logo
+</label>
+
+<label>
+<input type="checkbox" id="questions">
+Has Questions
+</label>
+
+</div>
+
+<button id="analyzeBtn">
+Analyze Job Posting
+</button>
+
+</div>
+
+<div class="result-card">
+
+<h2>Ready to Scan</h2>
+
+<div id="result">
+Submit a job posting to begin analysis.
+</div>
+
+</div>
+
+</section>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

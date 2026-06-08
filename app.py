@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import pandas as pd
 import numpy as np
 import joblib
@@ -16,7 +16,7 @@ preprocessor = joblib.load("categorical_preprocessor.pkl")
 
 @app.route("/")
 def home():
-    return {"message": "JobShieldAI API Running"}
+    return render_template("index.html")
 
 
 @app.route("/predict", methods=["POST"])
@@ -56,13 +56,33 @@ def predict():
 
     probability = float(prediction[0][0])
 
+    if probability < 0.3:
+        risk_level = "Low Risk"
+    elif probability < 0.6:
+        risk_level = "Medium Risk"
+    else:
+        risk_level = "High Risk"
+
     result = "Fraudulent" if probability > 0.5 else "Legitimate"
 
+    reasons = []
+
+    if data.get("has_company_logo", 0) == 0:
+        reasons.append("No company logo detected")
+
+    if len(data.get("company_profile", "")) < 50:
+        reasons.append("Company profile is too short")
+
+    if len(data.get("requirements", "")) < 30:
+        reasons.append("Limited job requirements provided")
+
+    if data.get("location", "") == "":
+        reasons.append("Location information missing")
     return jsonify({
-        "prediction": result,
-        "fraud_probability": round(probability * 100, 2)
-    })
-
-
+    "prediction": result,
+    "risk_level": risk_level,
+    "fraud_probability": round(probability * 100, 2),
+    "reasons": reasons
+})
 if __name__ == "__main__":
     app.run(debug=True)
