@@ -18,9 +18,20 @@ preprocessor = joblib.load("categorical_preprocessor.pkl")
 def home():
     return render_template("index.html")
 
-
 @app.route("/predict", methods=["POST"])
 def predict():
+
+    print("PREDICT ROUTE HIT")
+
+    return jsonify({
+        "prediction": "Legitimate",
+        "risk_level": "Low Risk",
+        "fraud_probability": 12.5,
+        "reasons": ["Test response"]
+    })
+
+# @app.route("/predict", methods=["POST"])
+# def predict():
 
     data = request.json
 
